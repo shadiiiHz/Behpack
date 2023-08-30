@@ -1,0 +1,89 @@
+.updateNews{
+    display: flex;
+    
+     
+ }
+ .updateNewsWrapper{
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     flex: 9;
+     margin: 20px 20px 20px 20px;
+ }
+ .updateNewsWrapperTitle{
+     text-align: center;
+     padding: 3px;
+     border-bottom: 2px solid var(--color-green);
+     font-family: "Josefin Sans", sans-serif;
+      font-size: 18px;
+      color: var(--color-green);
+ }
+ .updateNewsForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .input {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    border: 3px solid #bbb;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .input:hover {
+    border: 3px solid var(--color-green);
+  }
+  label,
+  .updateNewsDesc , .deleteTitle{
+    font-size: 20px;
+    font-family: "Josefin Sans", sans-serif;
+    margin-left: 10px;
+  }
+  .slider-input-icon {
+    cursor: pointer;
+    color: var(--color-green);
+  }
+  .updateNewsImage{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.updateNewsVideos {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+
+  }
+
+  .updateNewsVideo {
+    flex: 1;
+    margin: 5px;
+    max-width: 350px;
+    min-width: 350px;
+    height: 300px;
+    background-color: var(--color-green);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  .delete{
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgb(225, 104, 104) !important;
+    border: none;
+    border-radius: 5px;
+    width: max-content;
+    color: white !important;
+   
+}
+.delete:hover{
+    background: linear-gradient(rgb(225, 104, 104), #9198e5);
+}

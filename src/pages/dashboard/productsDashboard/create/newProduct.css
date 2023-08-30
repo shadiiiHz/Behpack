@@ -1,0 +1,65 @@
+.newProduct {
+  display: flex;
+}
+.newProductWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 9;
+  margin: 20px 20px 20px 20px;
+}
+.newProductWrapperTitle {
+  text-align: center;
+  padding: 3px;
+  border-bottom: 2px solid var(--color-green);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+  color: var(--color-green);
+}
+.newProductForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.input {
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: black;
+  border: 3px solid #bbb;
+  font-size: 15px;
+  font-weight: bold;
+}
+.input:hover {
+  border: 3px solid var(--color-green);
+}
+label,
+.newProductDesc {
+  font-size: 20px;
+  font-family: "Josefin Sans", sans-serif;
+  margin-left: 10px;
+}
+.createProductBtn{
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--color-green) !important;
+  border: none;
+  border-radius: 5px;
+  width: max-content;
+  color: white !important;
+}
+
+.createProductBtn:hover{
+  background: linear-gradient(var(--color-green), #9198e5);
+}
+.slider-input-icon {
+  cursor: pointer;
+  color: var(--color-green);
+}
+.error{
+  color: red;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

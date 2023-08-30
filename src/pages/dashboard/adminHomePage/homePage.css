@@ -1,0 +1,51 @@
+.dashboard {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+}
+.dashboardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 9;
+  margin: 20px;
+}
+.dashboardInfoTitle {
+  text-align: center;
+  padding: 3px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 22px;
+  background-color: var(--color-green);
+  color: var(--color-white);
+  height: 100px;
+  display: flex;
+ justify-content: center;
+ align-items: center;
+
+}
+.dashboardInfoImage{
+ 
+  display: flex;
+  justify-content: center;
+  animation: move 3s infinite ease alternate;
+  
+}
+
+.dashboardInfoImage img {
+  width: 400px;
+  height: 400px;
+}
+@keyframes move {
+  from {
+    transform: translateY(-15px);
+  }
+  to {
+    transform: translateY(0px) scale(1.03);
+  }
+}
+@media screen and (max-width: 900px){
+  .dashboardInfoImage img{
+    width: 300px;
+    height: 300px;
+  }
+}

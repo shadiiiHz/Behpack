@@ -1,0 +1,38 @@
+.aboutEdit{
+    display: flex;
+    
+     
+ }
+ .aboutEditInfo{
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     flex: 9;
+     margin: 20px 20px 0px 20px;
+ }
+ .aboutEditInfoTitle{
+    text-align: center;
+    padding: 3px;
+    border-bottom: 2px solid var(--color-green);
+    font-family: "Josefin Sans", sans-serif;
+     font-size: 18px;
+     color: var(--color-green);
+}
+.updateAboutBtn{
+    padding: 10px;
+    cursor: pointer;
+    background-color: var(--color-green) !important;
+    border: none;
+    border-radius: 5px;
+    width: max-content;
+    color: white !important;
+  }
+  
+  .updateAboutBtn:hover{
+    background: linear-gradient(var(--color-green), #9198e5);
+  }
+  @media screen and (max-width: 900px){
+    .aboutEdit{
+      margin: 10px;
+    }
+  }

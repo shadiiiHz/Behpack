@@ -1,0 +1,9 @@
+.products{
+    display: flex;
+
+}
+@media screen and (max-width: 900px){
+    .products{
+        flex-direction: column;
+    }
+}

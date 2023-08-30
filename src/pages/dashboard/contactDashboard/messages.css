@@ -1,0 +1,93 @@
+.contactUs {
+  display: flex;
+}
+.contactUsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 9;
+  margin: 20px 20px 0px 20px;
+}
+
+.contactUsInfoTitle {
+  text-align: center;
+  padding: 3px;
+  border-bottom: 2px solid var(--color-green);
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+  color: var(--color-green);
+}
+.contactUsInfCards {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-container {
+  flex: 1;
+  /* max-width: 320px;
+  min-width: 320px; */
+  height: auto;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.success {
+  padding: 1rem;
+  border-radius: 0.375rem;
+  background-color: rgb(240 253 244);
+}
+
+.succes-svg {
+  color: rgb(74 222 128);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.card-container-wrap {
+  margin-left: 0.75rem;
+}
+
+.card-container-heading {
+  font-weight: bold;
+  color: rgb(22 101 52);
+}
+
+.card-container-prompt {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  color: rgb(21 128 61);
+  gap: 15px;
+}
+.card-container div {
+  font-size: 16px;
+}
+.card-container-prompt div h6 {
+  font-weight: bold;
+}
+.deleteMessageBtn {
+  padding: 7px;
+  margin: 10px 0px 10px 0px;
+  cursor: pointer;
+  background-color: rgb(22 101 52) !important;
+  border: none;
+  border-radius: 5px;
+  width: max-content;
+  color: white !important;
+}
+.deleteMessageBtn:hover {
+  background: linear-gradient(rgb(225, 104, 104), #9198e5);
+}

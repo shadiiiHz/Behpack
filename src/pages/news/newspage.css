@@ -1,0 +1,9 @@
+.newsPage{
+    display: flex;
+
+}
+@media screen and (max-width: 900px){
+    .newsPage{
+        flex-direction: column;
+    }
+}

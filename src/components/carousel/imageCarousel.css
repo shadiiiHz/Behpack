@@ -1,0 +1,16 @@
+
+.CarouselImage {
+  width: 100%;
+  height: 650px;
+  /* object-fit: contain; */
+  background-color: var(--color-white);
+  
+
+}
+
+@media screen and (max-width: 900px){
+  
+    .CarouselImage{
+        height: 500px;
+    }
+}

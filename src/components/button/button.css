@@ -1,0 +1,13 @@
+.btn{
+    padding: 10px;
+    cursor: pointer;
+    background-color: var(--color-green) !important;
+    border: none;
+    border-radius: 5px;
+    width: max-content;
+    color: white !important;
+   
+}
+.btn:hover{
+    background: var(--color-hover)
+}

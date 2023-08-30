@@ -1,0 +1,13 @@
+.news {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  @media screen and (max-width: 900px){
+    .news{
+        
+    }
+  }
+
+  

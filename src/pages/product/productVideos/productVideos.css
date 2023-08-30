@@ -1,0 +1,37 @@
+.videosWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  gap: 30px;
+  min-height: 650px;
+}
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+.backBtn {
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--color-green) !important;
+  border: none;
+  border-radius: 5px;
+  width: max-content;
+  color: white !important;
+}
+.backBtn:hover {
+  background: var(--color-hover);
+}
+.video {
+  flex: 1;
+  margin: 5px;
+  max-width: 350px;
+  min-width: 350px;
+  height: 300px;
+  background-color: var(--color-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
