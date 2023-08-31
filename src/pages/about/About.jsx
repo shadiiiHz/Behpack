@@ -19,7 +19,9 @@ const About = () => {
 
         setContent(response.data.body.content);
        
-      } catch {}
+      } catch(err){
+        //handel error
+      }
     };
     setLoading(true)
     getAbout();

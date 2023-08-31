@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
@@ -13,18 +13,31 @@ import ProductsTable from "./pages/dashboard/productsDashboard/productTable/Prod
 import NewsTable from "./pages/dashboard/newsDashboard/newsTable/NewsTable";
 import AboutEdit from "./pages/dashboard/aboutUsDashboard/AboutEdit";
 import NewProduct from "./pages/dashboard/productsDashboard/create/NewProduct";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UpdateProduct from "./pages/dashboard/productsDashboard/update/UpdateProduct";
 import UpdateNews from "./pages/dashboard/newsDashboard/update/UpdateNews";
 import NewNews from "./pages/dashboard/newsDashboard/create/NewNews";
 import Search from "./pages/dashboard/slider/search/SliderShow";
 import CreateSlider from "./pages/dashboard/slider/create/CreateSlider";
 import Messages from "./pages/dashboard/contactDashboard/Messages";
-
+import { useEffect } from "react";
+import { logout } from "./redux/userRedux";
 function App() {
+  const dispatch = useDispatch();
   const admin = useSelector((state) => state.admin.isAdmin);
   let isAdmin = admin;
+  const expireToken = useSelector((state) => state.admin.expires_in);
  
+  function logoutUser() {
+    dispatch(logout());
+  }
+  useEffect(() => {
+    if (expireToken != 0 && expireToken * 1000 < Date.now()) {
+      logoutUser();
+      console.log("log out!!")
+      
+    }
+  }, [expireToken]);
   return (
     <BrowserRouter>
       <Routes>

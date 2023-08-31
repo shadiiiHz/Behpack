@@ -1,16 +1,39 @@
-import { loginFailure, loginRole, loginStart, loginSuccess } from "./userRedux";
+import {
+  loginExpToken,
+  loginFailure,
+  loginRole,
+  loginStart,
+  loginSuccess,
+} from "./userRedux";
 import { AdminRequest, publicRequest } from "../requestMethods";
-import { deleteProductFailure, deleteProductStart, deleteProductSuccess, getPageProduct, getProductFailure, getProductStart, getProductSuccess } from "./productRedux";
-import { deleteNewsFailure, deleteNewsStart, deleteNewsSuccess, getNewsFailure, getNewsStart, getNewsSuccess, getPageNews } from "./newsRedux";
-
+import {
+  deleteProductFailure,
+  deleteProductStart,
+  deleteProductSuccess,
+  getPageProduct,
+  getProductFailure,
+  getProductStart,
+  getProductSuccess,
+} from "./productRedux";
+import {
+  deleteNewsFailure,
+  deleteNewsStart,
+  deleteNewsSuccess,
+  getNewsFailure,
+  getNewsStart,
+  getNewsSuccess,
+  getPageNews,
+} from "./newsRedux";
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await AdminRequest.post("/signin", user);
-    // console.log(res.data.body.original.role)
+    // console.log(res.data.body)
+    const created_at = Date.now() / 1000 
     dispatch(loginSuccess(res.data.body.original.access_token));
     dispatch(loginRole(res.data.body.original.role));
+    dispatch(loginExpToken(res.data.body.original.expires_in + created_at));
   } catch (err) {
     dispatch(loginFailure());
   }
@@ -32,7 +55,9 @@ export const getProducts = async (dispatch, configuration, page) => {
 export const deleteProduct = async (id, dispatch, configuration) => {
   dispatch(deleteProductStart());
   try {
-    const res = await publicRequest.delete(`/product/delete/${id}`,configuration
+    const res = await publicRequest.delete(
+      `/product/delete/${id}`,
+      configuration
     );
     dispatch(deleteProductSuccess(id));
   } catch (err) {
@@ -56,8 +81,7 @@ export const getNews = async (dispatch, configuration, page) => {
 export const deleteNews = async (id, dispatch, configuration) => {
   dispatch(deleteNewsStart());
   try {
-    const res = await publicRequest.delete(`/post/delete/${id}`,configuration
-    );
+    const res = await publicRequest.delete(`/post/delete/${id}`, configuration);
     dispatch(deleteNewsSuccess(id));
   } catch (err) {
     dispatch(deleteNewsFailure());

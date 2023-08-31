@@ -8,6 +8,7 @@ const userSlice = createSlice({
     error: false,
     role: null,
     isAdmin: false,
+    expires_in: 0,
   },
   reducers: {
     loginStart: (state) => {
@@ -39,10 +40,14 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.isAdmin = false;
       state.role = null;
+      state.expires_in = 0 ;
       localStorage.removeItem('persist:root');
     },
+    loginExpToken:(state ,action)=>{
+      state.expires_in = action.payload;
+    }
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure,logout ,loginRole} = userSlice.actions;
+export const { loginStart, loginSuccess, loginFailure,logout ,loginRole,loginExpToken} = userSlice.actions;
 export default userSlice.reducer;

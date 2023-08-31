@@ -51,7 +51,7 @@ const Contact = () => {
       navigate(`/`);
       // console.log(res);
     } catch (err) {
-      console.log(err.response.data.errors);
+     
       setError(err.response.data.errors);
     }
   };
