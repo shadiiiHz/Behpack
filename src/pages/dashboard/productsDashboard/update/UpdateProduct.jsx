@@ -124,9 +124,9 @@ const UpdateProduct = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", title);
+    formData.append("title", title.trim());
     formData.append("content", desc);
-    formData.append("capacity", capacity);
+    formData.append("capacity", capacity.trim());
     formData.append("image", image);
 
     try {
