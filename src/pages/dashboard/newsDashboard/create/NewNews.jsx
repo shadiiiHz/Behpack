@@ -30,7 +30,7 @@ const NewNews = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", title.trim());
+    formData.append("title", title);
     formData.append("content", desc);
     formData.append("image", image);
 

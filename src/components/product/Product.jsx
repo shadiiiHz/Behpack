@@ -2,7 +2,7 @@ import React from "react";
 import "./product.css";
 import Button from "../button/Button";
 const Product = ({ item }) => {
-  const description = item.content.slice(0, 150);
+  const description = item.content.slice(0, 100);
   
   return (
     <>

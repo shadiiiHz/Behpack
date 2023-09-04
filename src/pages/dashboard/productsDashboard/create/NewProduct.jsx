@@ -38,7 +38,7 @@ const NewProduct = () => {
 
       arr.map((video) => {
        
-        if (video.size < 10000000) {
+        if (video.size < 20000000) {
           const formData = new FormData();
           formData.append("video", video);
           axios
@@ -79,9 +79,9 @@ const NewProduct = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", title.trim());
+    formData.append("title", title);
     formData.append("content", desc);
-    formData.append("capacity", capacity.trim());
+    formData.append("capacity", capacity);
     formData.append("image", image);
 
     if (videos.length != 0) {

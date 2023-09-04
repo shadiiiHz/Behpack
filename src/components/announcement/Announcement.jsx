@@ -2,7 +2,7 @@ import React from "react";
 import "./announcement.css";
 import Button from "../button/Button";
 const Announcement = ({ item }) => {
-  const description = item.content.slice(0, 200);
+  const description = item.content.slice(0, 100);
   return (
     <>
       <div className="announcement">
