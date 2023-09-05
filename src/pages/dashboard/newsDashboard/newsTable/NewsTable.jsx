@@ -60,7 +60,7 @@ const NewsTable = () => {
             {params.row.image ? (
               <img
                 className="productImage"
-                src={`http://localhost:8000/storage/post/image/${params.row.image}`}
+                src={`https://behpack.com/backend/storage/public/post/image/${params.row.image}`}
                 alt=""
               />
             ) : (

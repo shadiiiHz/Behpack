@@ -23,7 +23,7 @@ const SingleAnnouncement = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/site/post/fetch/${id}`,
+          `https://behpack.com/backend/api/v1/site/post/fetch/${id}`,
           configuration
         );
         setPost(response.data.body);
@@ -38,7 +38,7 @@ const SingleAnnouncement = () => {
         <div className="singleNewsWrapper">
           <img
             className="singleNewsImg"
-            src={`http://localhost:8000/storage/post/image/${post.image}`}
+            src={`https://behpack.com/backend/storage/public/post/image/${post.image}`}
             alt="news"
           />
           <h1 className="singleNewsTitle">{post.title}</h1>

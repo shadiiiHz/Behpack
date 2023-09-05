@@ -37,7 +37,7 @@ const NewNews = () => {
     try {
       const res = await axios
         .post(
-          `http://localhost:8000/api/v1/admin/post/create`,
+          `https://behpack.com/backend/api/v1/admin/post/create`,
           formData,
           configuration
         )

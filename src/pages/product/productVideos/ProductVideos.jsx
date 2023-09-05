@@ -25,7 +25,7 @@ const ProductVideos = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/site/product/fetch/${id}`,
+          `https://behpack.com/backend/api/v1/site/product/fetch/${id}`,
           configuration
         );
        
@@ -45,7 +45,7 @@ const ProductVideos = () => {
               return(
                 <div className="video" key={video.id}>
                 <video width="320" height="240" controls>
-                  <source src={`http://localhost:8000/storage/product/video/${video.path}`} type="video/mp4" />
+                  <source src={`https://behpack.com/backend/storage/public/product/video/${video.path}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>

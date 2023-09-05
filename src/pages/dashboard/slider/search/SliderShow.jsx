@@ -20,7 +20,7 @@ function Search() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/admin/slider/search`,
+          `https://behpack.com/backend/api/v1/admin/slider/search`,
           configuration
         );
         setImageList(response.data.body.data);
@@ -32,7 +32,7 @@ function Search() {
     e.preventDefault();
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/v1/admin/slider/delete/${id}`,
+        `https://behpack.com/backend/api/v1/admin/slider/delete/${id}`,
         configuration
       );
       const newImages = imageList.filter((item) => item.id != id);
@@ -72,7 +72,7 @@ function Search() {
                 return (
                   <div className="search-slider-card" key={img.id}>
                     <img
-                      src={`http://localhost:8000/storage/slider/image/${img.path}`}
+                      src={`https://behpack.com/backend/storage/public/slider/image/${img.path}`}
                       alt="slider-image"
                       className="search-slider-img"
                     />

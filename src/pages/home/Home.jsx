@@ -21,7 +21,7 @@ const Home = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/site/home`
+          `https://behpack.com/backend/api/v1/site/home`
         );
         setSlider(response.data.body.sliders)
         setProductList(response.data.body.products)

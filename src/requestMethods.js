@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000/api/v1/auth/";
-const BASE_URL2 = "http://localhost:8000/api/v1/admin/";
+const BASE_URL = "https://behpack.com/backend/api/v1/auth/";
+const BASE_URL2 = "https://behpack.com/backend/api/v1/admin/";
 
 
 export const AdminRequest = axios.create({

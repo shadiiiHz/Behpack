@@ -49,3 +49,8 @@ label {
 .createSlideBtn:hover{
   background: linear-gradient(var(--color-green), #9198e5);
 }
+.uploadingText{
+  margin: 2px 2px 2px 10px;
+  color: var(--color-green);
+
+}

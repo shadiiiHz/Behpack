@@ -24,7 +24,7 @@ const ContactUsShow = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/admin/contact-us/search?page=${page}`,
+          `https://behpack.com/backend/api/v1/admin/contact-us/search?page=${page}`,
           configuration
         );
         setpageCount(response.data.body.last_page);
@@ -42,7 +42,7 @@ const ContactUsShow = () => {
     e.preventDefault();
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/v1/admin/contact-us/delete/${id}`,
+        `https://behpack.com/backend/api/v1/admin/contact-us/delete/${id}`,
         configuration
       );
       const newList = data.filter((item) => item.id != id);

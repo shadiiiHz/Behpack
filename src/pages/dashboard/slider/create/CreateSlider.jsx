@@ -11,6 +11,8 @@ const CreateSlider = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState();
   const [error, setErorr] = useState([]);
+  const [uploadingText, setUploadingText] = useState("");
+  const [loading, setLoading] = useState(false);
   const token = useSelector((state) => state.admin.currentUser);
 
   const configuration = {
@@ -21,29 +23,37 @@ const CreateSlider = () => {
   };
   const handleClick = async (e) => {
     e.preventDefault();
+    setUploadingText("uploading...");
+    setLoading(true);
     const formData = new FormData();
     formData.append("image", image);
     formData.append("arrange", 1);
     try {
       const res = await axios
         .post(
-          `http://localhost:8000/api/v1/admin/slider/create`,
+          `https://behpack.com/backend/api/v1/admin/slider/create`,
           formData,
           configuration
         )
         .then((res) => {
-          Swal.fire({
-            title: "Image added!",
-            icon: "success",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-            toast: true,
-            position: "top-end",
-          });
-          navigate(`/slider`);
+          if (res.data.ok) {
+            setUploadingText("Image uploaded!");
+            setLoading(false);
+            Swal.fire({
+              title: "Image added!",
+              icon: "success",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              timer: 3000,
+              toast: true,
+              position: "top-end",
+            });
+            navigate(`/slider`);
+          }
         });
     } catch (err) {
+      setUploadingText("");
+      setLoading(false);
       setErorr(err.response.data.errors);
       Swal.fire({
         title: `${err.message}`,
@@ -84,6 +94,9 @@ const CreateSlider = () => {
                 }}
               />
             </div>
+            {uploadingText && (
+              <div className="uploadingText">{uploadingText}</div>
+            )}
             {error.image &&
               error.image.map((err, index) => {
                 return (
@@ -95,6 +108,9 @@ const CreateSlider = () => {
           </form>
           <button onClick={handleClick} className="createSlideBtn">
             create
+            {loading && (
+              <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+            )}
           </button>
         </div>
       </div>

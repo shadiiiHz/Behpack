@@ -13,7 +13,7 @@ const ImageCarousel = ({slider}) => {
               <Carousel.Item key={img.id}>
                 <img
                   className="CarouselImage"
-                  src={`http://localhost:8000/storage/slider/image/${img.path}`}
+                  src={`https://behpack.com/backend/storage/public/slider/image/${img.path}`}
                   alt={`${index} slide`}
                 />
               </Carousel.Item>

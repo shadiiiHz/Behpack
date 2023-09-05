@@ -35,13 +35,17 @@ const UpdateNews = () => {
     const getpost = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/admin/post/fetch/${id}`,
+          `https://behpack.com/backend/api/v1/admin/post/fetch/${id}`,
           configuration
         );
 
         setTitle(response.data.body.title);
+
         setDefaultImage(response.data.body.image);
+        // setImage(response.data.body.image)
+
         setDefaultDesc(response.data.body.content);
+        setDesc(response.data.body.content);
       } catch {}
     };
     getpost();
@@ -56,7 +60,7 @@ const UpdateNews = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/admin/post/update/${id}`,
+        `https://behpack.com/backend/api/v1/admin/post/update/${id}`,
         formData,
         configuration
       );
@@ -70,7 +74,17 @@ const UpdateNews = () => {
         position: "top-end",
       });
       navigate(`/newsTable`);
-    } catch (err) {}
+    } catch (err) {
+      Swal.fire({
+        title: `${err.message}`,
+        icon: "warning",
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 3000,
+        toast: true,
+        position: "top-end",
+      });
+    }
   };
   return (
     <>
@@ -81,7 +95,7 @@ const UpdateNews = () => {
           <div className="updateNewsWrapperTitle">Edit post</div>
           <img
             className="updateNewsImage"
-            src={`http://localhost:8000/storage/post/image/${defaultImage}`}
+            src={`https://behpack.com/backend/storage/public/post/image/${defaultImage}`}
             alt="post image"
           />
           <form className="updateNewsForm">

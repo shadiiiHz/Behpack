@@ -35,7 +35,7 @@ const Contact = () => {
     formData.append("message", message);
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/site/contact-us/create`,
+        `https://behpack.com/backend/api/v1/site/contact-us/create`,
         formData,
         configuration
       );

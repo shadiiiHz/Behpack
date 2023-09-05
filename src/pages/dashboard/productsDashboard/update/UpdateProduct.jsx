@@ -24,6 +24,9 @@ const UpdateProduct = () => {
   const [videos, setVideos] = useState([]);
   const [capacity, setCapacity] = useState("");
   const [videoFiles, setVideoFiles] = useState(null);
+  const [videoUploading, setVideoUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [uploadingText, setUploadingText] = useState("");
   // const editor = useRef(null);
   const editorRef = useRef(null);
   const token = useSelector((state) => state.admin.currentUser);
@@ -39,7 +42,7 @@ const UpdateProduct = () => {
     try {
       const res = await axios
         .delete(
-          `http://localhost:8000/api/v1/admin/product/remove/video/${videoId}`,
+          `https://behpack.com/backend/api/v1/admin/product/remove/video/${videoId}`,
           configuration
         )
         .then((res) => {
@@ -64,14 +67,20 @@ const UpdateProduct = () => {
     const getProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/admin/product/fetch/${id}`,
+          `https://behpack.com/backend/api/v1/admin/product/fetch/${id}`,
           configuration
         );
 
         setTitle(response.data.body.title);
+
         setDefaultImage(response.data.body.image);
+        // setImage(response.data.body.image);
+
         setCapacity(response.data.body.capacity);
+
         setDefaultDesc(response.data.body.content);
+        setDesc(response.data.body.content);
+
         setVideos(response.data.body.files);
       } catch {}
     };
@@ -83,19 +92,27 @@ const UpdateProduct = () => {
     if (videoFiles) {
       let arr = Array.from(videoFiles);
       arr.map((video) => {
-        
         if (video.size < 20000000) {
+          setVideoUploading(true);
+          setUploadingText("uploading...");
           const formData = new FormData();
           formData.append("video", video);
           formData.append("product_id", id);
           axios
             .post(
-              `http://localhost:8000/api/v1/admin/product/upload/video`,
+              `https://behpack.com/backend/api/v1/admin/product/upload/video`,
               formData,
               configuration
             )
-            .then((response) => {})
+            .then((response) => {
+              if (response.data.ok) {
+                setVideoUploading(false);
+                setUploadingText("Video uploaded!");
+              }
+            })
             .catch((error) => {
+              setVideoUploading(false);
+              setUploadingText("");
               Swal.fire({
                 title: `${error.message}`,
                 icon: "warning",
@@ -123,7 +140,7 @@ const UpdateProduct = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", desc);
@@ -131,22 +148,39 @@ const UpdateProduct = () => {
     formData.append("image", image);
 
     try {
-      const res = await axios.post(
-        `http://localhost:8000/api/v1/admin/product/update/${id}`,
-        formData,
-        configuration
-      );
+      const res = await axios
+        .post(
+          `https://behpack.com/backend/api/v1/admin/product/update/${id}`,
+          formData,
+          configuration
+        )
+        .then((response) => {
+          if (response.data.ok) {
+            setLoading(false);
+            Swal.fire({
+              title: "product updated!",
+              icon: "success",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              timer: 3000,
+              toast: true,
+              position: "top-end",
+            });
+            navigate(`/productsTable`);
+          }
+        });
+    } catch (err) {
+      setLoading(false);
       Swal.fire({
-        title: "product updated!",
-        icon: "success",
+        title: `${err.message}`,
+        icon: "warning",
         showConfirmButton: false,
         timerProgressBar: true,
         timer: 3000,
         toast: true,
         position: "top-end",
       });
-      navigate(`/productsTable`);
-    } catch (err) {}
+    }
   };
   return (
     <>
@@ -157,7 +191,7 @@ const UpdateProduct = () => {
           <div className="updateProductWrapperTitle">Edit product</div>
           <img
             className="updateProductImage"
-            src={`http://localhost:8000/storage/product/image/${defaultImage}`}
+            src={`https://behpack.com/backend/storage/public/product/image/${defaultImage}`}
             alt="product image"
           />
           <form className="updateProductForm">
@@ -187,6 +221,12 @@ const UpdateProduct = () => {
                 setVideoFiles(e.target.files);
               }}
             />
+            {videoUploading && (
+              <div className="spinner-border text-success ms-2"></div>
+            )}
+            {uploadingText && (
+              <div className="uploadingText">{uploadingText}</div>
+            )}
             <label>product title: </label>
             <input
               type="text"
@@ -265,7 +305,7 @@ const UpdateProduct = () => {
                 <div className="updateProductVideo" key={vid.id}>
                   <video width="250" height="240" controls>
                     <source
-                      src={`http://localhost:8000/storage/product/video/${vid.path}`}
+                      src={`https://behpack.com/backend/storage/public/product/video/${vid.path}`}
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -282,6 +322,9 @@ const UpdateProduct = () => {
           </div>
           <button onClick={handleClick} className="updateProductBtn">
             update
+            {loading && (
+              <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+            )}
           </button>
         </div>
       </div>

@@ -20,7 +20,9 @@ const NewProduct = () => {
   const [videoFiles, setVideoFiles] = useState(null);
   const [capacity, setCapacity] = useState("");
   const [err, setErr] = useState([]);
-
+  const [videoUploading, setVideoUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [uploadingText, setUploadingText] = useState("");
   // const editor = useRef(null);
   const editorRef = useRef(null);
   const token = useSelector((state) => state.admin.currentUser);
@@ -37,20 +39,25 @@ const NewProduct = () => {
       let arr = Array.from(videoFiles);
 
       arr.map((video) => {
-       
         if (video.size < 20000000) {
+          setVideoUploading(true);
+          setUploadingText("uploading...");
           const formData = new FormData();
           formData.append("video", video);
           axios
             .post(
-              `http://localhost:8000/api/v1/admin/product/upload/video`,
+              `https://behpack.com/backend/api/v1/admin/product/upload/video`,
               formData,
               configuration
             )
             .then((response) => {
               setVideos((prevArray) => [...prevArray, response.data.body]);
+              setVideoUploading(false);
+              setUploadingText("Video uploaded!");
             })
             .catch((error) => {
+              setVideoUploading(false);
+              setUploadingText("");
               Swal.fire({
                 title: `${error.message}`,
                 icon: "warning",
@@ -77,7 +84,7 @@ const NewProduct = () => {
   }, [videoFiles]);
   const handleClick = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", desc);
@@ -93,23 +100,27 @@ const NewProduct = () => {
     try {
       const res = await axios
         .post(
-          `http://localhost:8000/api/v1/admin/product/create`,
+          `https://behpack.com/backend/api/v1/admin/product/create`,
           formData,
           configuration
         )
         .then((res) => {
-          Swal.fire({
-            title: "product created!",
-            icon: "success",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-            toast: true,
-            position: "top-end",
-          });
-          navigate(`/productsTable`);
+          if (res.data.ok) {
+            setLoading(false);
+            Swal.fire({
+              title: "product created!",
+              icon: "success",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              timer: 3000,
+              toast: true,
+              position: "top-end",
+            });
+            navigate(`/productsTable`);
+          }
         });
     } catch (err) {
+      setLoading(false);
       setErr(err.response.data.errors);
 
       Swal.fire({
@@ -170,7 +181,12 @@ const NewProduct = () => {
                 // console.log(e.target.files)
               }}
             />
-
+            {videoUploading && (
+              <div className="spinner-border text-success ms-2"></div>
+            )}
+            {uploadingText && (
+              <div className="uploadingText">{uploadingText}</div>
+            )}
             <label>product title: </label>
             <input
               type="text"
@@ -283,6 +299,9 @@ const NewProduct = () => {
             })}
           <button onClick={handleClick} className="createProductBtn">
             create
+            {loading && (
+              <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+            )}
           </button>
         </div>
       </div>

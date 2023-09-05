@@ -6,7 +6,7 @@ const Announcement = ({ item }) => {
   return (
     <>
       <div className="announcement">
-        <img src={`http://localhost:8000/storage/post/image/${item.image}`} alt="" className="announcementImg" />
+        <img src={`https://behpack.com/backend/storage/public/post/image/${item.image}`} alt="" className="announcementImg" />
 
         <span className="announcementTitle">{item.title}</span>
 

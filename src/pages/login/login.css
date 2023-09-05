@@ -1,71 +1,106 @@
 .loginContainer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    height: 440px;
-    margin: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  height: 440px;
+  margin: 50px;
+}
+
+.title {
+  color: #bbb;
+}
+
+.subtitle {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--color-green);
+}
+
+.form {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input {
+  padding: 20px;
+  background-color: transparent;
+  border: 2px solid #bbb;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+.input:hover{
+  border: 2px solid var(--color-green);
+}
+.button {
+  width: 300px;
+  padding: 20px;
+  cursor: pointer;
+  background-color: #53c28b;
+  border: none;
+  border-radius: 5px;
+  color: #eee;
+  font-weight: bold;
+}
+
+.button:hover {
+  background: var(--color-hover);
+}
+.error {
+  color: red;
+}
+.pwd-container {
+
+  display: flex;
+  padding: 8.7px;
+  background-color: transparent;
+  border: 3px solid #bbb;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.pwd-container:hover{
+  border: 3px solid var(--color-green);
+}
+.pwd-container input{
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.icon {
+  cursor: pointer;
+}
+.forgetPassword{
+  font-size: 13px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--color-green);
+}
+.forgetPassword:hover{
+  font-size: 14px;
+  border-bottom: 3px dotted var(--color-green);
+}
+@media screen and (max-width: 900px) {
+  .loginContainer {
+    height: 580px;
+    gap: 0px;
   }
-  
-  .title{
-    color: #bbb;
-  }
-  
-  .subtitle{
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: var(--color-green);
-   
-  }
-  
-  .form {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .input {
-    padding: 20px;
-    background-color: transparent;
-    border: 2px solid #bbb;
-    border-radius: 5px;
-    outline: none;
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
   .button {
-    width: 300px;
-    padding: 20px;
-    cursor: pointer;
-    background-color: #53c28b;
-    border: none;
-    border-radius: 5px;
-    color: #eee;
-    font-weight: bold;
+    width: 220px;
   }
-  
-  .button:hover {
-    background: var(--color-hover);
+  .subtitle {
+    font-size: 15px;
+    margin-bottom: 0;
   }
-  .error{
-    color: red;
-  }
-  @media screen and (max-width: 900px){
-    .loginContainer{
-        height: 580px;
-        gap: 0px;
-    }
-    .button{
-        width: 220px;
-    }
-    .subtitle{
-        font-size: 15px;
-        margin-bottom: 0;
-    }
-   
-  }
-  
-  
+}

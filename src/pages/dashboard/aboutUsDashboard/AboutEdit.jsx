@@ -15,6 +15,7 @@ const AboutEdit = () => {
   const [defaultContent, setDefaultContent] = useState("");
   // const editor = useRef(null);
   const editorRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const token = useSelector((state) => state.admin.currentUser);
   const configuration = {
     headers: {
@@ -27,11 +28,12 @@ const AboutEdit = () => {
     const getAbout = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/admin/about-us/fetch`,
+          `https://behpack.com/backend/api/v1/admin/about-us/fetch`,
           configuration
         );
 
         setDefaultContent(response.data.body.content);
+        setContent(response.data.body.content)
       } catch {}
     };
     getAbout();
@@ -39,25 +41,42 @@ const AboutEdit = () => {
   /////////////update///////////
   const handleClick = async (e) => {
     e.preventDefault();
+    setLoading(true)
     const form = { content };
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/admin/about-us/update`,
+        `https://behpack.com/backend/api/v1/admin/about-us/update`,
         form,
         configuration
-      );
+      ).then((response) =>{
+        if(response.data.ok){
+          setLoading(false)
+          Swal.fire({
+            title: "About us updated!",
+            icon: "success",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 3000,
+            toast: true,
+            position: "top-end",
+          });
+          navigate(`/dashboard`)
+        }
+      })
+     ;
+      // console.log(res);
+    } catch (err) {
+      setLoading(false);
       Swal.fire({
-        title: "About us updated!",
-        icon: "success",
+        title: `${err.message}`,
+        icon: "warning",
         showConfirmButton: false,
         timerProgressBar: true,
         timer: 3000,
         toast: true,
         position: "top-end",
       });
-      navigate(`/dashboard`);
-      // console.log(res);
-    } catch (err) {}
+    }
   };
   
   
@@ -119,6 +138,9 @@ const AboutEdit = () => {
          
           <button onClick={handleClick} className="updateAboutBtn">
             update
+            {loading && (
+              <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+            )}
           </button>
         </div>
       </div>

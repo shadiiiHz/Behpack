@@ -17,7 +17,7 @@ const SingleProduct = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/site/product/fetch/${id}`
+          `https://behpack.com/backend/api/v1/site/product/fetch/${id}`
         );
        
         setProduct(response.data.body);
@@ -35,7 +35,7 @@ const SingleProduct = () => {
         <div className="singleProductWrapper">
           <img
             className="singleProductImg"
-            src={`http://localhost:8000/storage/product/image/${product.image}`}
+            src={`https://behpack.com/backend/storage/public/product/image/${product.image}`}
             alt="Product"
           />
 

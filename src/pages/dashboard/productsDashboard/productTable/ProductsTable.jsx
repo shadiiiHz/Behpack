@@ -58,7 +58,7 @@ const Products = () => {
             {params.row.image ? (
               <img
                 className="productImage"
-                src={`http://localhost:8000/storage/product/image/${params.row.image}`}
+                src={`https://behpack.com/backend/storage/public/product/image/${params.row.image}`}
                 alt=""
               />
             ) : (

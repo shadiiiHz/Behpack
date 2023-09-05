@@ -8,7 +8,7 @@ const Product = ({ item }) => {
     <>
       <div className="product">
         <img
-          src={`http://localhost:8000/storage/product/image/${item.image}`}
+          src={`https://behpack.com/backend/storage/public/product/image/${item.image}`}
           alt=""
           className="productImg"
         />

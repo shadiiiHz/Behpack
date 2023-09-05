@@ -25,7 +25,7 @@ function Newspage() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/site/post/search?page=${page}`,
+          `https://behpack.com/backend/api/v1/site/post/search?page=${page}`,
           configuration
         );
         setpageCount(response.data.body.last_page);

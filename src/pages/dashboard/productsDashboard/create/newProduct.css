@@ -63,3 +63,8 @@ label,
   flex-direction: column;
   gap: 5px;
 }
+.uploadingText{
+  margin: 2px 2px 2px 10px;
+  color: var(--color-green);
+
+}
