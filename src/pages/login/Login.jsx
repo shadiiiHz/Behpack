@@ -70,7 +70,7 @@ const Login = () => {
             Login
           </button>
           {error && <p className="error">Email or password is wrong</p>}
-          <Link className="forgetPassword">DO NOT YOU REMEMBER THE PASSWORD?</Link>
+          <Link to="/change/password" className="forgetPassword">DO NOT YOU REMEMBER THE PASSWORD?</Link>
         </form>
       </div>
       <Footer />

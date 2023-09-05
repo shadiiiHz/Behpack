@@ -22,6 +22,8 @@ import CreateSlider from "./pages/dashboard/slider/create/CreateSlider";
 import Messages from "./pages/dashboard/contactDashboard/Messages";
 import { useEffect } from "react";
 import { logout } from "./redux/userRedux";
+import EmailLogin from "./pages/login/setEmail/EmailLogin";
+import ResetPassword from "./pages/login/resetPassword/ResetPassword";
 function App() {
   const dispatch = useDispatch();
   const admin = useSelector((state) => state.admin.isAdmin);
@@ -30,6 +32,7 @@ function App() {
   console.log("expireToken" ,expireToken )
   console.log("Date.now()" ,Date.now() /1000)
   console.log(expireToken * 1000 < Date.now())
+ 
   function logoutUser() {
     dispatch(logout());
   }
@@ -55,7 +58,8 @@ function App() {
 
         {/*                          admin routs                             */}
         <Route path="/dashboard" element={isAdmin ? <HomePage /> : <Login />} />
-
+        <Route path="/change/password" element={<EmailLogin />} />
+        <Route path="/password/reset" element={<ResetPassword />} />
         {/* product routs */}
         <Route
           path="/productsTable"
