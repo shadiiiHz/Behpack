@@ -16,8 +16,8 @@ const HomepageSidbar = () => {
       </div>
       <div className="sidebarItem">
         <span className="homeSidebarTitle">Let's Keep in Touch</span>
-        <Link className="mail" to="Info@Behpack.ir">
-          Info@Behpack.ir
+        <Link className="mail" to="mailto:info@behpack.com">
+          info@behpack.com
         </Link>
       </div>
     </div>

@@ -78,10 +78,18 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="topRight">
-        <FacebookIcon className="topIcon" />
-        <TwitterIcon className="topIcon" />
-        <LinkedInIcon className="topIcon" />
-        <EmailIcon className="topIcon" />
+        <Link>
+          <FacebookIcon className="topIcon" />
+        </Link>
+        <Link>
+          <TwitterIcon className="topIcon" />
+        </Link>
+        <Link to={`https://www.linkedin.com/company/behpack/`}>
+          <LinkedInIcon className="topIcon" />
+        </Link>
+        <Link to="mailto:info@behpack.com">
+          <EmailIcon className="topIcon" />
+        </Link>
       </div>
       <div className="app__navbar-smallscreen">
         <MenuIcon
@@ -143,10 +151,7 @@ const Navbar = () => {
               </li>
               {isAdmin && (
                 <li>
-                  <Link
-                    className="link"
-                    to="/dashboard"
-                  >
+                  <Link className="link" to="/dashboard">
                     Dashboard
                   </Link>
                 </li>
