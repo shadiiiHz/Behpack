@@ -63,8 +63,9 @@
   outline: none;
   color: black;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
+
 .pwd-container:hover {
   border: 3px solid var(--color-green);
 }
@@ -73,11 +74,39 @@
   outline: none;
   font-size: 15px;
   font-weight: bold;
+  flex: 11;
 }
-
+.emailContainer {
+  display: flex;
+  padding: 8.7px;
+  background-color: transparent;
+  border: 3px solid #bbb;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+.emailContainer input {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: bold;
+  flex: 11;
+}
+.emailContainer:hover {
+  border: 3px solid var(--color-green);
+}
 .icon {
   cursor: pointer;
+  color: var(--color-green);
+  flex: 1;
 }
+.mailIcon{
+  color: var(--color-green);
+  flex: 1;
+}
+
 .forgetPassword {
   font-size: 13px;
   margin-bottom: 20px;
@@ -99,12 +128,6 @@
   .subtitle {
     font-size: 15px;
     margin-bottom: 0;
-  }
-  .pwd-container {
-    width: 240px;
-  }
-  .input{
-    width: 240px;
   }
  
 }

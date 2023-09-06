@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import MailIcon from "@mui/icons-material/Mail";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,14 +31,18 @@ const Login = () => {
         <h2 className="subtitle">Please sign in to see the dashboard</h2>
 
         <form className="form">
-          <input
-            type="text"
-            name="email"
-            placeholder="Email"
-            required
-            className="input"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <div className="emailContainer">
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              required
+              // className="input"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <MailIcon className="mailIcon" />
+          </div>
+
           <div className="pwd-container">
             <input
               name="password"
@@ -50,13 +55,11 @@ const Login = () => {
             {isRevealPwd ? (
               <VisibilityOffIcon
                 className="icon"
-                style={{ color: "#53c28b" }}
                 onClick={() => setIsRevealPwd((prevState) => !prevState)}
               />
             ) : (
               <VisibilityIcon
                 className="icon"
-                style={{ color: "#53c28b" }}
                 onClick={() => setIsRevealPwd((prevState) => !prevState)}
               />
             )}
@@ -70,7 +73,9 @@ const Login = () => {
             Login
           </button>
           {error && <p className="error">Email or password is wrong</p>}
-          <Link to="/change/password" className="forgetPassword">DO NOT YOU REMEMBER THE PASSWORD?</Link>
+          <Link to="/change/password" className="forgetPassword">
+            forget your password?
+          </Link>
         </form>
       </div>
       <Footer />
