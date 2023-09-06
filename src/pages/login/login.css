@@ -100,7 +100,11 @@
     font-size: 15px;
     margin-bottom: 0;
   }
-  .pwd-container input {
-    width: 177px;
+  .pwd-container {
+    width: 240px;
   }
+  .input{
+    width: 240px;
+  }
+ 
 }
