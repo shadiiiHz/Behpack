@@ -12,6 +12,7 @@ const SingleProduct = () => {
   const id = param.pathname.split("/")[2];
   const [product, setProduct] = useState([]);
   const [hasVideo, setHasVideo] = useState(0);
+  const [loading, setLoading] = useState(false);
   ////////fetch///////
   useEffect(() => {
     const getData = async () => {
@@ -19,13 +20,14 @@ const SingleProduct = () => {
         const response = await axios.get(
           `https://behpack.com/backend/api/v1/site/product/fetch/${id}`
         );
-       
+
         setProduct(response.data.body);
-        console.log(response.data.body.content)
         setHasVideo(response.data.body.files.length);
-      } catch {}
+      } catch (err) {}
     };
+    setLoading(true);
     getData();
+    setLoading(false);
   }, []);
 
   return (
@@ -45,15 +47,14 @@ const SingleProduct = () => {
               Capacity: {product.capacity}
             </span>
             <div className="singleProductDesc">
-              <div
-                dangerouslySetInnerHTML={{ __html: product.content }}
-              />
+              <div dangerouslySetInnerHTML={{ __html: product.content }} />
             </div>
             {hasVideo > 0 && (
               <Button text="Lets watch videos" url={`/products/${id}/videos`} />
             )}
           </div>
         </div>
+        {loading && <div className="spinner-border text-light m-2"></div>}
       </div>
       <Footer />
     </>

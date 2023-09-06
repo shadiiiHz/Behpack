@@ -17,6 +17,7 @@ const Contact = () => {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState([]);
+  const [loading, setLoading] = useState(false);
   const configuration = {
     headers: {
       Accept: "application/json",
@@ -25,6 +26,7 @@ const Contact = () => {
   };
   const handleClick = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("first_name", first_name);
     formData.append("last_name", last_name);
@@ -34,24 +36,31 @@ const Contact = () => {
     formData.append("phone", phone);
     formData.append("message", message);
     try {
-      const res = await axios.post(
-        `https://behpack.com/backend/api/v1/site/contact-us/create`,
-        formData,
-        configuration
-      );
-      Swal.fire({
-        title: "Your message sent!",
-        icon: "success",
-        showConfirmButton: false,
-        timerProgressBar: true,
-        timer: 3000,
-        toast: true,
-        position: "top-end",
-      });
-      navigate(`/`);
+      const res = await axios
+        .post(
+          `https://behpack.com/backend/api/v1/site/contact-us/create`,
+          formData,
+          configuration
+        )
+        .then((response) => {
+          if (response.data.ok) {
+            setLoading(false);
+            Swal.fire({
+              title: "Your message sent!",
+              icon: "success",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              timer: 3000,
+              toast: true,
+              position: "top-end",
+            });
+            navigate(`/`);
+          }
+        });
+
       // console.log(res);
     } catch (err) {
-     
+      setLoading(false);
       setError(err.response.data.errors);
     }
   };
@@ -92,12 +101,20 @@ const Contact = () => {
               />
             </div>
             {error.first_name &&
-              error.first_name.map((error , index) => {
-                return <div className="error" key={index}>{error}</div>;
+              error.first_name.map((error, index) => {
+                return (
+                  <div className="error" key={index}>
+                    {error}
+                  </div>
+                );
               })}
             {error.last_name &&
-              error.last_name.map((error,index) => {
-                return <div className="error" key={index}>{error}</div>;
+              error.last_name.map((error, index) => {
+                return (
+                  <div className="error" key={index}>
+                    {error}
+                  </div>
+                );
               })}
             <input
               type="email"
@@ -112,8 +129,12 @@ const Contact = () => {
               }}
             />
             {error.email &&
-              error.email.map((error,index) => {
-                return <div className="error" key={index}>{error}</div>;
+              error.email.map((error, index) => {
+                return (
+                  <div className="error" key={index}>
+                    {error}
+                  </div>
+                );
               })}
             <input
               type="text"
@@ -128,12 +149,16 @@ const Contact = () => {
               }}
             />
             {error.company &&
-              error.company.map((error,index) => {
-                return <div className="error" key={index}>{error}</div>;
+              error.company.map((error, index) => {
+                return (
+                  <div className="error" key={index}>
+                    {error}
+                  </div>
+                );
               })}
             <input
               type="text"
-              placeholder="Adress"
+              placeholder="Address"
               className="input"
               required
               onChange={(e) => {
@@ -144,8 +169,12 @@ const Contact = () => {
               }}
             />
             {error.address &&
-              error.address.map((error , index) => {
-                return <div className="error" key={index}>{error}</div>;
+              error.address.map((error, index) => {
+                return (
+                  <div className="error" key={index}>
+                    {error}
+                  </div>
+                );
               })}
             <input
               type="tel"
@@ -160,8 +189,12 @@ const Contact = () => {
               }}
             />
             {error.phone &&
-              error.phone.map((error,index) => {
-                return <div className="error" key={index}>{error}</div>;
+              error.phone.map((error, index) => {
+                return (
+                  <div className="error" key={index}>
+                    {error}
+                  </div>
+                );
               })}
             <textarea
               className="textArea"
@@ -177,11 +210,18 @@ const Contact = () => {
               }}
             ></textarea>
             {error.message &&
-              error.message.map((error,index) => {
-                return <div className="error" key={index}>{error}</div>;
+              error.message.map((error, index) => {
+                return (
+                  <div className="error" key={index}>
+                    {error}
+                  </div>
+                );
               })}
             <button className="sendBtn" onClick={handleClick}>
               send
+              {loading && (
+                <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+              )}
             </button>
           </form>
         </div>

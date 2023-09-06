@@ -42,7 +42,7 @@
     font-family: "Varela Round", Arial, Helvetica, sans-serif;
   }
   .singleNewsDesc {
-    text-align: center;
+    /* text-align: center; */
     color: #666;
     font-size: 18px;
     line-height: 25px;

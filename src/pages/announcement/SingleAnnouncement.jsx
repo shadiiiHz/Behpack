@@ -11,6 +11,7 @@ const SingleAnnouncement = () => {
   const param = useLocation();
   const id = param.pathname.split("/")[2];
   const [post, setPost] = useState([]);
+  const [loading, setLoading] = useState(false);
   const token = useSelector((state) => state.admin.currentUser); //this must be remove
   const configuration = {
     headers: {
@@ -29,7 +30,9 @@ const SingleAnnouncement = () => {
         setPost(response.data.body);
       } catch {}
     };
+    setLoading(true);
     getData();
+    setLoading(false);
   }, []);
   return (
     <>
@@ -44,12 +47,10 @@ const SingleAnnouncement = () => {
           <h1 className="singleNewsTitle">{post.title}</h1>
 
           <div className="singleNewsDesc">
-          <div
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
-         
         </div>
+        {loading && <div className="spinner-border text-light m-2"></div>}
       </div>
       <Footer />
     </>

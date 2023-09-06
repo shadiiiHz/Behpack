@@ -7,7 +7,7 @@ import Footer from "../../components/footer/Footer";
 import axios from "axios";
 const About = () => {
   const [content, setContent] = useState("");
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   ////////fetch///////
   useEffect(() => {
@@ -18,14 +18,11 @@ const About = () => {
         );
 
         setContent(response.data.body.content);
-       
-      } catch(err){
-        //handel error
-      }
+      } catch (err) {}
     };
-    setLoading(true)
+    setLoading(true);
     getAbout();
-    setLoading(false)
+    setLoading(false);
   }, []);
   return (
     <>
@@ -46,13 +43,15 @@ const About = () => {
               </strong>
               <br />
               <br />
-              <div className="line-height" dangerouslySetInnerHTML={{ __html: content }} />
-              {loading && <div className="spinner-border text-success mt-5"></div>}
+              <div
+                className="line-height"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
             </div>
             <Button url="/contact" text="Contact" />
           </div>
         </div>
-        
+        {loading && <div className="spinner-border text-light m-2"></div>}
       </div>
       <Footer />
     </>
