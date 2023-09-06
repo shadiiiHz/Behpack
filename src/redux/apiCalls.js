@@ -30,7 +30,7 @@ export const login = async (dispatch, user) => {
   try {
     const res = await AdminRequest.post("/signin", user);
     // console.log(res.data.body)
-    const created_at = Date.now() / 1000 - 3600
+    const created_at = Date.now() / 1000 - 1800
     dispatch(loginSuccess(res.data.body.original.access_token));
     dispatch(loginRole(res.data.body.original.role));
     dispatch(loginExpToken(res.data.body.original.expires_in + created_at));
