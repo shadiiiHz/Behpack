@@ -20,7 +20,7 @@ const UpdateNews = () => {
   const [defaultDesc, setDefaultDesc] = useState("");
   const [image, setImage] = useState("");
   const [defaultImage, setDefaultImage] = useState("");
-
+  const [loading, setLoading] = useState(false);
   // const editor = useRef(null);
   const editorRef = useRef(null);
   const token = useSelector((state) => state.admin.currentUser);
@@ -52,29 +52,36 @@ const UpdateNews = () => {
   }, [id]);
   const handleClick = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", desc);
     formData.append("image", image);
 
     try {
-      const res = await axios.post(
-        `https://behpack.com/backend/api/v1/admin/post/update/${id}`,
-        formData,
-        configuration
-      );
-      Swal.fire({
-        title: "post updated!",
-        icon: "success",
-        showConfirmButton: false,
-        timerProgressBar: true,
-        timer: 3000,
-        toast: true,
-        position: "top-end",
-      });
-      navigate(`/newsTable`);
+      const res = await axios
+        .post(
+          `https://behpack.com/backend/api/v1/admin/post/update/${id}`,
+          formData,
+          configuration
+        )
+        .then((response) => {
+          if (response.data.ok) {
+            setLoading(false);
+            Swal.fire({
+              title: "post updated!",
+              icon: "success",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              timer: 3000,
+              toast: true,
+              position: "top-end",
+            });
+            navigate(`/newsTable`);
+          }
+        });
     } catch (err) {
+      setLoading(false);
       Swal.fire({
         title: `${err.message}`,
         icon: "warning",
@@ -174,6 +181,9 @@ const UpdateNews = () => {
           />
           <button onClick={handleClick} className="createNewsBtn">
             update
+            {loading && (
+              <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+            )}
           </button>
         </div>
       </div>

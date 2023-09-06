@@ -89,7 +89,6 @@
 }
 .forgetPassword:hover{
   font-size: 14px;
-  border-bottom: 3px dotted var(--color-green);
 }
 @media screen and (max-width: 900px) {
   .loginContainer {

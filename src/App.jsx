@@ -29,17 +29,14 @@ function App() {
   const admin = useSelector((state) => state.admin.isAdmin);
   let isAdmin = admin;
   const expireToken = useSelector((state) => state.admin.expires_in);
-  console.log("expireToken" ,expireToken )
-  console.log("Date.now()" ,Date.now() /1000)
-  console.log(expireToken * 1000 < Date.now())
- 
+  
   function logoutUser() {
     dispatch(logout());
   }
   useEffect(() => {
     if (expireToken != 0 && expireToken * 1000 < Date.now()) {
       logoutUser();
-      console.log("log out!!")
+   
       
     }
   }, [expireToken]);

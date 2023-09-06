@@ -7,10 +7,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const EmailLogin = () => {
     const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
     const handleClick = async (e) => {
         e.preventDefault();
-        
+        setLoading(true)
         const form = { email };
         try {
           const res = await axios.post(
@@ -18,7 +19,7 @@ const EmailLogin = () => {
             form
           ).then((response) =>{
             if(response.data.ok){
-             
+             setLoading(false)
               Swal.fire({
                 title: "Code will be sent to your email!",
                 icon: "success",
@@ -34,7 +35,7 @@ const EmailLogin = () => {
          ;
           // console.log(res);
         } catch (err) {
-       
+       setLoading(false)
           Swal.fire({
             title: `${err.message}`,
             icon: "warning",
@@ -68,6 +69,9 @@ const EmailLogin = () => {
             onClick={handleClick}
           >
             Submit
+            {loading && (
+              <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+            )}
           </button>
         </form>
       </div>

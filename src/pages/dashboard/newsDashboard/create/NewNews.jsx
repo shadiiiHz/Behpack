@@ -16,6 +16,7 @@ const NewNews = () => {
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState(null);
   const [err, setErr] = useState([]);
+  const [loading, setLoading] = useState(false);
   // const editor = useRef(null);
   const editorRef = useRef(null);
   const token = useSelector((state) => state.admin.currentUser);
@@ -28,7 +29,7 @@ const NewNews = () => {
   };
   const handleClick = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", desc);
@@ -42,19 +43,24 @@ const NewNews = () => {
           configuration
         )
         .then((res) => {
-          Swal.fire({
-            title: "post created!",
-            icon: "success",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            timer: 3000,
-            toast: true,
-            position: "top-end",
-          });
-          navigate(`/newsTable`);
+          if(res.data.ok){
+            setLoading(false)
+            Swal.fire({
+              title: "post created!",
+              icon: "success",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              timer: 3000,
+              toast: true,
+              position: "top-end",
+            });
+            navigate(`/newsTable`);
+          }
+          
         });
     } catch (err) {
       setErr(err.response.data.errors);
+      setLoading(false)
       Swal.fire({
         title: `${err.response.data.message}`,
         icon: "warning",
@@ -177,6 +183,9 @@ const NewNews = () => {
             })}
           <button onClick={handleClick} className="createNewsBtn">
             create
+            {loading && (
+              <div className="spinner-border spinner-border-sm text-light ms-2"></div>
+            )}
           </button>
         </div>
       </div>
