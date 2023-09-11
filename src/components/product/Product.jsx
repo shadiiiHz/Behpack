@@ -13,7 +13,7 @@ const Product = ({ item }) => {
           className="productImg"
         />
         <div className="productInfo">
-          <span className="productCap">{`Capacity: ${item.capacity}`}</span>
+          <span className="productCap">{`Capacity: ${item.capacity} PPM`}</span>
 
           <span className="productTitle">{item.title}</span>
         </div>

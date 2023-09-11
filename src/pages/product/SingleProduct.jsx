@@ -44,7 +44,7 @@ const SingleProduct = () => {
           <div className="singleProductInfo">
             <h1 className="singleProductTitle">{product.title}</h1>
             <span className="singleProductCap">
-              Capacity: {product.capacity}
+              Capacity: {product.capacity} PPM
             </span>
             <div className="singleProductDesc">
               <div dangerouslySetInnerHTML={{ __html: product.content }} />
