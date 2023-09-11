@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 // import JoditEditor from "jodit-react";
 import { Editor } from "@tinymce/tinymce-react";
 
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 const NewProduct = () => {
   const navigate = useNavigate();
 
@@ -26,7 +29,7 @@ const NewProduct = () => {
   // const editor = useRef(null);
   const editorRef = useRef(null);
   const token = useSelector((state) => state.admin.currentUser);
-
+ 
   const configuration = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -251,13 +254,8 @@ const NewProduct = () => {
               height: 500,
               menubar: false,
               plugins: [
-                "a11ychecker",
                 "advlist",
-                "advcode",
-                "advtable",
                 "autolink",
-                "checklist",
-                "export",
                 "lists",
                 "link",
                 "image",
@@ -266,9 +264,7 @@ const NewProduct = () => {
                 "anchor",
                 "searchreplace",
                 "visualblocks",
-                "powerpaste",
                 "fullscreen",
-                "formatpainter",
                 "insertdatetime",
                 "media",
                 "table",
@@ -289,6 +285,7 @@ const NewProduct = () => {
               }
             }}
           />
+      
           {err.content &&
             err.content.map((error, index) => {
               return (
