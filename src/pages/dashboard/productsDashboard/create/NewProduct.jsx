@@ -10,8 +10,6 @@ import { useNavigate } from "react-router-dom";
 // import JoditEditor from "jodit-react";
 import { Editor } from "@tinymce/tinymce-react";
 
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const NewProduct = () => {
   const navigate = useNavigate();
